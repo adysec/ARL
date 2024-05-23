@@ -1,5 +1,9 @@
 set -e
 
+cd /etc/yum.repos.d/
+sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+
 echo "cd /opt/"
 
 mkdir -p /opt/
@@ -72,9 +76,6 @@ metadata_expire=300
 EOF
 
 echo "install dependencies ..."
-cd /etc/yum.repos.d/
-sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
-sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
 cd /opt/
 yum update -y
 yum install epel-release -y
