@@ -5,6 +5,13 @@ echo "cd /opt/"
 mkdir -p /opt/
 cd /opt/
 
+tee /etc/resolv.conf <<"EOF"
+nameserver 180.76.76.76
+nameserver 1.2.4.8
+nameserver 1.1.1.1
+EOF
+
+
 tee /etc/yum.repos.d/mongodb-org-4.0.repo <<"EOF"
 [mongodb-org-4.0]
 name=MongoDB Repository
@@ -14,10 +21,66 @@ enabled=1
 gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc
 EOF
 
+tee //etc/yum.repos.d/rabbitmq.repo <<"EOF"
+[rabbitmq_erlang]
+name=rabbitmq_erlang
+baseurl=https://packagecloud.io/rabbitmq/erlang/el/8/$basearch
+repo_gpgcheck=1
+gpgcheck=1
+enabled=1
+# PackageCloud's repository key and RabbitMQ package signing key
+gpgkey=https://packagecloud.io/rabbitmq/erlang/gpgkey
+       https://github.com/rabbitmq/signing-keys/releases/download/2.0/rabbitmq-release-signing-key.asc
+sslverify=1
+sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+metadata_expire=300
+
+[rabbitmq_erlang-source]
+name=rabbitmq_erlang-source
+baseurl=https://packagecloud.io/rabbitmq/erlang/el/8/SRPMS
+repo_gpgcheck=1
+gpgcheck=0
+enabled=1
+gpgkey=https://packagecloud.io/rabbitmq/erlang/gpgkey
+       https://github.com/rabbitmq/signing-keys/releases/download/2.0/rabbitmq-release-signing-key.asc
+sslverify=1
+sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+metadata_expire=300
+
+[rabbitmq_server]
+name=rabbitmq_server
+baseurl=https://packagecloud.io/rabbitmq/rabbitmq-server/el/8/$basearch
+repo_gpgcheck=1
+gpgcheck=0
+enabled=1
+gpgkey=https://packagecloud.io/rabbitmq/rabbitmq-server/gpgkey
+       https://github.com/rabbitmq/signing-keys/releases/download/2.0/rabbitmq-release-signing-key.asc
+sslverify=1
+sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+metadata_expire=300
+
+[rabbitmq_server-source]
+name=rabbitmq_server-source
+baseurl=https://packagecloud.io/rabbitmq/rabbitmq-server/el/8/SRPMS
+repo_gpgcheck=1
+gpgcheck=0
+enabled=1
+gpgkey=https://packagecloud.io/rabbitmq/rabbitmq-server/gpgkey
+sslverify=1
+sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+metadata_expire=300
+EOF
+
 echo "install dependencies ..."
+cd /etc/yum.repos.d/
+sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+cd /opt/
+yum update -y
 yum install epel-release -y
-yum install python36 mongodb-org-server mongodb-org-shell rabbitmq-server python36-devel gcc-c++ git \
- nginx  fontconfig wqy-microhei-fonts unzip wget -y
+yum install systemd -y
+yum install rabbitmq-server --nobest -y
+yum install python36 mongodb-org-server mongodb-org-shell python36-devel gcc-c++ git nginx fontconfig wqy-microhei-fonts unzip wget -y
 
 if [ ! -f /usr/bin/python3.6 ]; then
   echo "link python3.6"
@@ -33,8 +96,8 @@ fi
 
 if ! command -v nmap &> /dev/null
 then
-    echo "install nmap-7.93-1 ..."
-    rpm -vhU https://nmap.org/dist/nmap-7.93-1.x86_64.rpm
+    echo "install nmap ..."
+    yum install nmap -y
 fi
 
 
@@ -51,26 +114,26 @@ if ! command -v wih &> /dev/null
 then
   echo "install wih ..."
   ## 安装 WIH
-  wget https://github.com/1c3z/arl_files/raw/master/wih/wih_linux_amd64 -O /usr/bin/wih && chmod +x /usr/bin/wih
+  wget https://github.com/adysec/arl_files/raw/main/wih/wih_linux_amd64 -O /usr/bin/wih && chmod +x /usr/bin/wih
   wih --version
 fi
 
 
 echo "start services ..."
 systemctl enable mongod
-systemctl start mongod
+systemctl restart mongod
 systemctl enable rabbitmq-server
-systemctl start rabbitmq-server
+systemctl restart rabbitmq-server
 
 
 if [ ! -d ARL ]; then
   echo "git clone ARL proj"
-  git clone https://github.com/TophantTechnology/ARL
+  git clone https://github.com/adysec/ARL
 fi
 
 if [ ! -d "ARL-NPoC" ]; then
   echo "git clone ARL-NPoC proj"
-  git clone https://github.com/1c3z/ARL-NPoC
+  git clone https://github.com/adysec/ARL-NPoC
 fi
 
 cd ARL-NPoC
@@ -81,14 +144,14 @@ cd ../
 
 if [ ! -f /usr/local/bin/ncrack ]; then
   echo "Download ncrack ..."
-  wget https://github.com/1c3z/arl_files/raw/master/ncrack -O /usr/local/bin/ncrack
+  wget https://github.com/adysec/arl_files/raw/main/ncrack -O /usr/local/bin/ncrack
   chmod +x /usr/local/bin/ncrack
 fi
 
 mkdir -p /usr/local/share/ncrack
 if [ ! -f /usr/local/share/ncrack/ncrack-services ]; then
   echo "Download ncrack-services ..."
-  wget https://github.com/1c3z/arl_files/raw/master/ncrack-services -O /usr/local/share/ncrack/ncrack-services
+  wget https://github.com/adysec/arl_files/raw/main/ncrack-services -O /usr/local/share/ncrack/ncrack-services
 fi
 
 mkdir -p /data/GeoLite2
@@ -141,6 +204,7 @@ fi
 
 
 echo "gen cert ..."
+chmod +x docker/worker/gen_crt.sh
 ./docker/worker/gen_crt.sh
 
 
