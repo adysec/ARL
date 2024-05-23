@@ -1,34 +1,12 @@
 ## ARL(Asset Reconnaissance Lighthouse)资产侦察灯塔系统
-
-[![Python 3.6](https://img.shields.io/badge/python-3.6-yellow.svg)](https://www.python.org/)
-[![Docker Images](https://img.shields.io/docker/pulls/tophant/arl.svg)](https://hub.docker.com/r/tophant/arl)
-[![Github Issues](https://img.shields.io/github/issues/TophantTechnology/ARL.svg)](https://github.com/TophantTechnology/ARL/issues)
-[![Github Stars](https://img.shields.io/github/stars/TophantTechnology/ARL.svg)](https://github.com/TophantTechnology/ARL/stargazers)
-
-资产灯塔，不仅仅是域名收集
+ARL资产侦察灯塔系统备份项目，**已跑通**
 
 ### 简介
-
 旨在快速侦察与目标关联的互联网资产，构建基础资产信息库。
 协助甲方安全团队或者渗透测试人员有效侦察和检索资产，发现存在的薄弱点和攻击面。
 
-在开始使用之前，请务必阅读并同意[免责声明](Disclaimer.md)中的条款，否则请勿下载安装使用本系统。
-
-### 特性
-
-1. 域名资产发现和整理
-2. IP/IP 段资产整理
-3. 端口扫描和服务识别
-4. WEB 站点指纹识别
-5. 资产分组管理和搜索
-6. 任务策略配置
-7. 计划任务和周期任务
-8. Github 关键字监控
-9. 域名/IP 资产监控
-10. 站点变化监控
-11. 文件泄漏等风险检测
-12. nuclei PoC 调用
-13. [WebInfoHunter](https://tophanttechnology.github.io/ARL-doc/function_desc/web_info_hunter/) 调用和监控
+ARL删库后，备份项目使用到ARL-NPoC、arl_files等项目，无法跑通，大多数人使用docker运行ARL，docker镜像同样被删除，无法拉取镜像，需要修改安装脚本调试环境
+用新不用旧，更新为centos8版本运行，nmap使用最新版本，nuclei待更新
 
 ### 系统要求
 
@@ -36,7 +14,7 @@
 由于自动资产发现过程中会有大量的的发包，建议采用云服务器可以带来更好的体验。
 ### Docker 安装（快速）
 ```bash
-docker run -d --name arl adysec/arl
+docker run --privileged -it -d -p 5003:5003 --name=arl adysec/arl /usr/sbin/init
 ```
 ### Docker 内源码安装（最新版）
 
@@ -72,6 +50,21 @@ systemctl status arl-worker
 systemctl status arl-worker-github
 systemctl status arl-scheduler
 ```
+### 特性
+
+1. 域名资产发现和整理
+2. IP/IP 段资产整理
+3. 端口扫描和服务识别
+4. WEB 站点指纹识别
+5. 资产分组管理和搜索
+6. 任务策略配置
+7. 计划任务和周期任务
+8. Github 关键字监控
+9. 域名/IP 资产监控
+10. 站点变化监控
+11. 文件泄漏等风险检测
+12. nuclei PoC 调用
+13. [WebInfoHunter](https://tophanttechnology.github.io/ARL-doc/function_desc/web_info_hunter/) 调用和监控
 
 ### 截图
 
@@ -125,38 +118,7 @@ systemctl status arl-scheduler
 | 21   | WIH 调用        | 调用 WebInfoHunter 工具在JS中收集域名,AK/SK等信息            |
 | 22   | WIH 监控任务    | 对资产分组中的站点周期性 调用 WebInfoHunter 工具在JS中域名等信息进行监控 |
 
-### 配置参数说明
-
-Docker环境配置文件路径 `docker/config-docker.yaml`
-
-| 配置                        | 说明                                    |
-| --------------------------- | --------------------------------------- |
-| CELERY.BROKER_URL           | rabbitmq连接信息                        |
-| MONGO                       | mongo 连接信息                          |
-| QUERY_PLUGIN                | 域名查询插件数据源Token 配置            |
-| GEOIP                       | GEOIP 数据库路径信息                    |
-| FOFA                        | FOFA API 配置信息                       |
-| DINGDING                    | 钉钉消息推送配置                        |
-| EMAIL                       | 邮箱发送配置                            |
-| GITHUB.TOKEN                | GITHUB 搜索 TOKEN                       |
-| ARL.AUTH                    | 是否开启认证，不开启有安全风险          |
-| ARL.API_KEY                 | arl后端API调用key，如果设置了请注意保密 |
-| ARL.BLACK_IPS               | 为了防止SSRF，屏蔽的IP地址或者IP段      |
-| ARL.PORT_TOP_10             | 自定义端口，对应前端端口测试选项        |
-| ARL.DOMAIN_DICT             | 域名爆破字典，对应前端大字典选项        |
-| ARL.FILE_LEAK_DICT          | 文件泄漏字典                            |
-| ARL.DOMAIN_BRUTE_CONCURRENT | 域名爆破并发数配置                      |
-| ARL.ALT_DNS_CONCURRENT      | 组合生成的域名爆破并发数                |
-| PROXY.HTTP_URL              | HTTP代理URL设置                         |
-| FEISHU                      | 飞书消息推送配置                        |
-| WXWORK                      | 企业微信消息推送                        |
-
-
 ### FAQ
 
-请访问如下链接[FAQ](https://tophanttechnology.github.io/ARL-doc/faq/)
-
-### 写在最后
-
-目前ARL仅仅只是完成了对资产的部分维度的发现和收集，自动发现过程中难免出现覆盖度不全、不精准、不合理等缺陷的地方还请反馈至我们。  
+请访问如下链接[FAQ](https://tophanttechnology.github.io/ARL-doc/faq/)  
 
