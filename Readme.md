@@ -32,10 +32,13 @@
 
 ### 系统要求
 
-建议采用**docker内源码安装**方式运行。系统配置建议：CPU:4线程 内存:8G 带宽:10M。  
+建议采用**Docker内源码安装**或**Docker内源码安装**方式运行。系统配置建议：CPU:4线程 内存:8G 带宽:10M。  
 由于自动资产发现过程中会有大量的的发包，建议采用云服务器可以带来更好的体验。
-
-### Docker 内源码安装
+### Docker 安装（快速）
+```bash
+docker run -d --name arl adysec/arl
+```
+### Docker 内源码安装（最新版）
 
 ```bash
 docker run --privileged -it -d -p 5003:5003 --name=arl centos /usr/sbin/init
