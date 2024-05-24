@@ -1,4 +1,4 @@
-name: Daily Update Nuclei POCs
+name: Daily Update ARL Tools
 
 on:
   push:
