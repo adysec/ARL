@@ -20,6 +20,8 @@ docker run --privileged -it -d -p 5003:5003 --name=arl adysec/arl /usr/sbin/init
 ### Docker 内源码安装（最新版）
 
 ```bash
+curl https://github.com/adysec/ARL/raw/master/tools/smartdns.conf > /etc/smartdns/smartdns.conf
+docker run -d --name smartdns --restart=always -p 53:53/udp -v /etc/smartdns:/etc/smartdns pymumu/smartdns:latest
 docker run --privileged -it -d -p 5003:5003 --name=arl centos /usr/sbin/init
 docker exec -it arl bash
 #docker内运行
