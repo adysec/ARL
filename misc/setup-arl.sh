@@ -105,9 +105,9 @@ fi
 
 if ! command -v nuclei &> /dev/null
 then
-  echo "install nuclei_3.2.4 ..."
-  wget https://github.com/projectdiscovery/nuclei/releases/download/v3.2.4/nuclei_3.2.4_linux_amd64.zip
-  unzip nuclei_3.2.4_linux_amd64.zip && mv nuclei /usr/bin/ && rm -f nuclei_3.2.4_linux_amd64.zip
+  echo "install nuclei"
+  wget https://github.com/adysec/ARL/raw/master/tools/nuclei.zip
+  unzip nuclei.zip && mv nuclei /usr/bin/ && rm -f nuclei.zip
   nuclei -ut
 fi
 
