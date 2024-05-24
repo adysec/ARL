@@ -134,8 +134,8 @@ if [ ! -d ARL ]; then
 fi
 
 if [ ! -d "ARL-NPoC" ]; then
-  echo "git clone ARL-NPoC proj"
-  git clone https://github.com/adysec/ARL-NPoC
+  echo "mv ARL-NPoC proj"
+  mv ARL/tools/ARL-NPoC ARL-NPoC
 fi
 
 cd ARL-NPoC
