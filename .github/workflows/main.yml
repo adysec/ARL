@@ -1,0 +1,38 @@
+name: Daily Update Nuclei POCs
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 12 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+        
+    - name: Update Nuclei
+      run: cd tools && python nuclei_download.py
+      
+    - name: Update GeoLite2-ASN
+      run: cd tools && wget https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-ASN.mmdb
+    - name: Update GeoLite2-City
+      run: wget https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-City.mmdb
+      
+    - name: Commit and Push changes
+      run: |
+        echo $(date +'%Y%m%d') > date.txt
+        git add .
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -am "$(date +'%Y%m%d')"
+        git push -v --progress
