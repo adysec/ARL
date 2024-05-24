@@ -1,0 +1,28 @@
+# JNDI Listener
+jndi:
+  # JNDI 平台对外IP 地址
+  host: '127.0.0.1'
+  # RMI Registry Port For JNDI Listener
+  port: 1097
+  # HTTP Server Port For JNDI Listener
+  http-port: 8000
+
+
+# HTTP Listener
+http:
+  # HTTP Server Host
+  host: '10.0.83.3'
+  # HTTP Server Port
+  port: 8080
+  # Authentication Token For HTTP API Server
+  auth_token: ''
+  # If HTTP API Server Requires Authentication
+  auth_enabled: false
+
+
+# Reverse Shell Web Terminal
+shell_manager:
+  # Web Terminal Platform IP Address
+  host: '127.0.0.1'
+  # Web Terminal Platform Port Number
+  port: 9001

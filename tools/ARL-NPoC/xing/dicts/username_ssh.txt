@@ -1,0 +1,12 @@
+root
+admin
+oracle
+backup
+gitlab
+guest
+ops
+system
+test
+ubuntu
+user
+zabbix

@@ -1,0 +1,34 @@
+# Ncrack available services
+# Use this file to add additional supported services in the format specified:
+# <service_name> <port_number>/<protocol> <module-specific-options>
+# where protocol = either tcp or udp
+
+ftp 21/tcp
+ssh 22/tcp
+telnet 23/tcp
+http 80/tcp
+pop3 110/tcp
+imap 143/tcp
+netbios-ssn 445/tcp
+smb 445/tcp
+smb 139/tcp
+https 443/tcp
+owa 443/tcp
+sip 5060/tcp
+pop3s 995/tcp
+mssql 1443/tcp
+mysql 3306/tcp
+ms-wbt-server 3389/tcp
+rdp 3389/tcp
+psql 5432/tcp
+vnc 5801/tcp
+vnc 5900/tcp
+vnc 5901/tcp
+vnc 6001/tcp
+redis 6379/tcp
+winrm 5985/tcp
+winrm 5986/tcp
+cassandra 9160/tcp
+cassandra 9042/tcp
+mongodb 27017/tcp
+
