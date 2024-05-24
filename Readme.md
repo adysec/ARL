@@ -10,7 +10,7 @@ ARL删库后，备份项目使用到ARL-NPoC、arl_files等项目，无法跑通
 1. 用新不用旧，更新为centos8版本运行(docker内的centos7起不来systemctl)
 2. 修改centos软件源使用cloudflare代理(家里的电脑连官方源巨慢)
 3. 修改pip源使用cloudflare代理(国内服务器经常连不上pypi源)
-4. 加入指纹库(eHoleFinger)
+4. 加入指纹库(eHoleFinger等，使用ARL导出的格式)
 5. nmap使用最新版本(顺手的事)
 6. nuclei使用最新版本(通过github action每日更新)
 7. ARL-NPoC、arl_files、geoip均移至tools目录下(建一堆项目太麻烦，且使用github action每日更新)
@@ -48,7 +48,21 @@ wget https://raw.githubusercontent.com/adysec/ARL/master/misc/setup-arl.sh
 chmod +x setup-arl.sh
 ./setup-arl.sh
 ```
-
+### DNS爆破优化
+本机安装smartdns，以ubuntu为例
+```
+apt install smartdns -y
+curl https://github.com/adysec/ARL/raw/master/tools/smartdns.conf > /etc/smartdns/smartdns.conf
+systemctl restart smartdns
+docker exec -it arl bash
+#docker内运行
+tee /etc/resolv.conf <<"EOF"
+nameserver 本机ip
+nameserver 180.76.76.76
+nameserver 1.2.4.8
+nameserver 1.1.1.1
+EOF
+```
 ### 查看服务状态
 
 ```
