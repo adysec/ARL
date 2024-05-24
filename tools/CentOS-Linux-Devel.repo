@@ -1,0 +1,7 @@
+[devel]
+name=CentOS Linux $releasever - Devel WARNING! FOR BUILDROOT USE ONLY!
+#mirrorlist=http://#mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=Devel&infra=$infra
+baseurl=https://mirrors.adysec.com/system/centos/$contentdir/$releasever/Devel/$basearch/os/
+gpgcheck=1
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
