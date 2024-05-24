@@ -2,7 +2,7 @@ set -e
 
 cd /etc/yum.repos.d/
 sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
-sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+sed -i 's|baseurl=http://.*centos.org|baseurl=https://mirrors.adysec.com/system/centos|g' /etc/yum.repos.d/CentOS-*
 
 echo "cd /opt/"
 
@@ -235,20 +235,14 @@ fi
 
 echo "start arl services ..."
 systemctl enable arl-web
-systemctl start arl-web
+systemctl restart arl-web
 systemctl enable arl-worker
-systemctl start arl-worker
+systemctl restart arl-worker
 systemctl enable arl-worker-github
-systemctl start arl-worker-github
+systemctl restart arl-worker-github
 systemctl enable arl-scheduler
-systemctl start arl-scheduler
+systemctl restart arl-scheduler
 systemctl enable nginx
-systemctl start nginx
-
-systemctl status arl-web
-systemctl status arl-worker
-systemctl status arl-worker-github
-systemctl status arl-scheduler
+systemctl restart nginx
 
 echo "install done"
-
