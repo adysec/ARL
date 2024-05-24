@@ -13,6 +13,7 @@ ARL删库后，备份项目使用到ARL-NPoC、arl_files等项目，无法跑通
 4. 加入指纹库(eHoleFinger)
 5. nmap使用最新版本(顺手的事)
 6. nuclei使用最新版本(通过github action每日更新)
+7. ARL-NPoC、arl_files、geoip均移至tools目录下(建一堆项目太麻烦)
 
 ### 系统要求
 
