@@ -92,6 +92,7 @@ fi
 if [ ! -f /usr/local/bin/pip3.6 ]; then
   echo "install  pip3.6"
   python3.6 -m ensurepip --default-pip
+  pip3.6 config --global set global.index-url https://mirrors.adysec.com/language/pypi
   python3.6 -m pip install --upgrade pip
   pip3.6 --version
 fi
