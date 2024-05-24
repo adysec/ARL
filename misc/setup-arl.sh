@@ -2,7 +2,8 @@ set -e
 
 cd /etc/yum.repos.d/
 sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
-sed -i 's|baseurl=http://.*centos.org|baseurl=https://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+sed -i 's|baseurl=http://.*centos.org|baseurl=https://mirrors.adysec.com/system/centos|g' /etc/yum.repos.d/CentOS-*
+sed -i 's|#baseurl=https://mirrors.adysec.com/system/centos|baseurl=https://mirrors.adysec.com/system/centos|g' /etc/yum.repos.d/CentOS-*
 
 echo "cd /opt/"
 
