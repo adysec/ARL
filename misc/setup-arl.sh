@@ -84,12 +84,6 @@ yum install systemd -y
 yum install rabbitmq-server --nobest -y
 yum install python36 mongodb-org-server mongodb-org-shell python36-devel gcc-c++ git nginx fontconfig wqy-microhei-fonts unzip wget -y
 
-mkdir -p /etc/smartdns/
-curl https://github.com/adysec/ARL/raw/master/tools/smartdns.conf > /etc/smartdns/smartdns.conf
-mkdir -p /opt/smartdns/
-curl https://github.com/adysec/ARL/raw/master/tools/smartdns > /opt/smartdns/smartdns
-chmod +x /opt/smartdns/smartdns
-
 if [ ! -f /usr/bin/python3.6 ]; then
   echo "link python3.6"
   ln -s /usr/bin/python36 /usr/bin/python3.6
@@ -240,14 +234,8 @@ if [ ! -f /etc/systemd/system/arl-scheduler.service ]; then
   cp misc/arl-scheduler.service /etc/systemd/system/
 fi
 
-if [ ! -f /etc/systemd/system/smartdns.service ]; then
-  echo  "copy arl-scheduler.service"
-  cp misc/smartdns.service /etc/systemd/system/
-fi
-
 echo "start arl services ..."
-systemctl enable smartdns
-systemctl restart smartdns
+
 systemctl enable arl-web
 systemctl restart arl-web
 systemctl enable arl-worker
