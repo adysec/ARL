@@ -3,7 +3,7 @@ import re
 requests.packages.urllib3.disable_warnings()
 
 def update_data(token):
-	with open('指纹数据.json', 'r',encoding='utf-8') as file:
+	with open('tools/指纹数据.json', 'r',encoding='utf-8') as file:
 		rules_dict = {}
 		current_name = None
 		current_rule = None
