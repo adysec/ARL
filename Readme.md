@@ -9,8 +9,9 @@ ARL删库后，备份项目使用到ARL-NPoC、arl_files等项目，无法跑通
 ### 修改内容
 1. 用新不用旧，更新为centos8版本运行(docker内的centos7起不来systemctl)
 2. 修改软件源使用cloudflare代理(家里的电脑连官方源巨慢)
-3. nmap使用最新版本(顺手的事)
-4. nuclei使用最新版本(还没做)
+3. 加入指纹库(eHoleFinger)
+4. nmap使用最新版本(顺手的事)
+5. nuclei使用最新版本(还没做)
 
 ### 系统要求
 
