@@ -247,11 +247,6 @@ systemctl restart arl-scheduler
 systemctl enable nginx
 systemctl restart nginx
 
-tee /etc/resolv.conf <<"EOF"
-nameserver 127.0.0.1
-nameserver 180.76.76.76
-nameserver 1.2.4.8
-nameserver 1.1.1.1
-EOF
+python3.6 ARL-Finger-ADD.py https://127.0.0.1:5003/ admin arlpass
 
 echo "install done"
