@@ -248,6 +248,6 @@ systemctl restart arl-scheduler
 systemctl enable nginx
 systemctl restart nginx
 
-python3.6 tools/ARL-Finger-ADD.py https://127.0.0.1:5003/ admin arlpass
+python3.6 tools/add_finger.py
 
 echo "install done"
