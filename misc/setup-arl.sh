@@ -107,7 +107,7 @@ fi
 if ! command -v nuclei &> /dev/null
 then
   echo "install nuclei"
-  wget https://github.com/adysec/ARL/raw/master/tools/nuclei.zip
+  wget https://github.com/adysec/ARL/raw/master/tools/nuclei.zip -O nuclei.zip
   unzip nuclei.zip && mv nuclei /usr/bin/ && rm -f nuclei.zip
   nuclei -ut
 fi
