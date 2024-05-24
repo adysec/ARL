@@ -1,6 +1,0 @@
-[debuginfo]
-name=CentOS Linux $releasever - Debuginfo
-baseurl=https://mirrors.adysec.com/system/centos/$releasever/$basearch/
-gpgcheck=1
-enabled=0
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
