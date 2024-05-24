@@ -1,6 +1,4 @@
 import requests
-import os
-import zipfile
 
 def get_latest_release():
     url = "https://api.github.com/repos/projectdiscovery/nuclei/releases/latest"
@@ -19,10 +17,6 @@ def download_file(url, dest):
     else:
         raise Exception(f"Failed to download file: {url}")
 
-def extract_zip(file_path, extract_path='.'):
-    with zipfile.ZipFile(file_path, 'r') as zip_ref:
-        zip_ref.extractall(extract_path)
-
 def main():
     release = get_latest_release()
     assets = release['assets']
@@ -38,12 +32,10 @@ def main():
 
     print(f"Downloading from {download_url}")
 
-    dest_file = os.path.join(os.getcwd(), 'nuclei.zip')
+    dest_file = 'nuclei.zip'
     download_file(download_url, dest_file)
-    
-    extract_zip(dest_file)
-    os.remove(dest_file)
-    print("Downloaded and extracted Nuclei binaries")
+
+    print("Downloaded Nuclei ZIP file")
 
 if __name__ == "__main__":
     main()
