@@ -6,7 +6,7 @@ requests.packages.urllib3.disable_warnings()
 
 def main(url, token):
 
-    f = open(".tools/finger.json",'r', encoding="utf-8")
+    f = open("tools/finger.json",'r', encoding="utf-8")
     content =f.read()
     load_dict = json.loads(content)
         #dump_dict = json.dump(f)
