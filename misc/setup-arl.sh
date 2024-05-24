@@ -85,9 +85,11 @@ yum install rabbitmq-server --nobest -y
 yum install python36 mongodb-org-server mongodb-org-shell python36-devel gcc-c++ git nginx fontconfig wqy-microhei-fonts unzip wget -y
 
 mkdir -p /etc/smartdns/
+curl https://github.com/mokeyish/smartdns-rs/releases/download/0.7.2/smartdns-x86_64-unknown-linux-musl.tar.gz >smartdns.tar.gz
+
 curl https://github.com/adysec/ARL/raw/master/tools/smartdns.conf > /etc/smartdns/smartdns.conf
 mkdir -p /opt/smartdns/
-curl https://github.com/adysec/ARL/raw/master/tools/smartdns-x86_64 > /opt/smartdns/smartdns
+curl https://github.com/adysec/ARL/raw/master/tools/smartdns > /opt/smartdns/smartdns
 chmod +x /opt/smartdns/smartdns
 
 if [ ! -f /usr/bin/python3.6 ]; then
