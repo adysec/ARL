@@ -11,7 +11,7 @@ ARL删库后，备份项目使用到ARL-NPoC、arl_files等项目，无法跑通
 2. docker运行模式改为单docker镜像，无需安装docker-compose(对于大多数人只用一台服务器的场景下，前后端分离没有必要)
 3. 修改centos软件源使用cloudflare代理(家里的电脑连官方源巨慢)
 4. 修改pip源使用cloudflare代理(国内服务器经常连不上pypi源)
-5. 加入指纹库(eHoleFinger等，使用ARL导出的格式，有新指纹可以提issue，或者直接改json文件)
+5. 加入指纹库(eHoleFinger等，使用ARL导出的格式，有新指纹可以提issue，或者直接改json文件通过docker内源码安装)
 6. nmap使用最新版本(顺手的事，能yum装新的干嘛rpm装老的)
 7. nuclei使用最新版本(通过github action每日更新)
 8. ARL-NPoC、arl_files、geoip均移至tools目录下(建一堆项目太麻烦，且使用github action每日更新)
