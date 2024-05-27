@@ -8,7 +8,7 @@ RUN python3.6 -m ensurepip --default-pip
 
 RUN pip3.6 install pip --upgrade
 
-RUN rpm -vhU https://nmap.org/dist/nmap-7.93-1.x86_64.rpm
+RUN yum install nmap -y
 
 RUN yum install python36-devel gcc-c++ -y
 
@@ -44,7 +44,7 @@ RUN curl https://ssl-config.mozilla.org/ffdhe2048.txt -o /etc/ssl/certs/dhparam.
 
 COPY requirements.txt requirements.txt
 
-#RUN pip3.6 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+RUN pip3.6 config set global.index-url https://mirrors.adysec.com/language/pypi
 
 COPY docker/GeoLite2/ /data/GeoLite2/
 
@@ -60,16 +60,16 @@ RUN pip3.6 install -r requirements.txt
 ARG NUCLEI_VERSION=3.2.4
 
 # 安装nuclei
-RUN wget "https://github.com/projectdiscovery/nuclei/releases/download/v${NUCLEI_VERSION}/nuclei_${NUCLEI_VERSION}_linux_amd64.zip" \
-    && unzip "nuclei_${NUCLEI_VERSION}_linux_amd64.zip" nuclei \
+RUN wget -c "https://github.com/adysec/ARL/raw/master/tools/nuclei.zip" \
+    && unzip "nuclei.zip" nuclei \
     && mv nuclei /usr/bin/ \
-    && rm -f "nuclei_${NUCLEI_VERSION}_linux_amd64.zip"
+    && rm -f "nuclei.zip"
 
 # 运行nuclei
 RUN nuclei -ut
 
 ## 安装 WIH
-RUN wget https://github.com/1c3z/arl_files/raw/master/wih/wih_linux_amd64 -O /usr/bin/wih && chmod +x /usr/bin/wih
+RUN wget -c https://github.com/adysec/ARL/raw/master/tools/wih/wih_linux_amd64 -O /usr/bin/wih && chmod +x /usr/bin/wih
 RUN wih --version
 
 ## 切换工作目录
