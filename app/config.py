@@ -52,9 +52,8 @@ class Config(object):
 
     AUTH = False
     API_KEY = ""
-
-    # BLACK_IPS = ["127.0.0.0/8", "10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16", "0.0.0.0/8"]
-    BLACK_IPS = ["127.0.0.0/8", "0.0.0.0/8"]
+    
+    BLACK_IPS = []
 
     GEOIP_ASN = ""
     GEOIP_CITY = ""
@@ -77,7 +76,6 @@ class Config(object):
     EMAIL_USERNAME = ""
     EMAIL_PASSWORD = ""
     EMAIL_TO = ""
-    # FORBIDDEN_DOMAINS = ["gov.cn", "edu.cn", "org.cn"]
     FORBIDDEN_DOMAINS = []
 
     GITHUB_TOKEN = ""
