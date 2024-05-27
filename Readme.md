@@ -76,10 +76,22 @@ systemctl status arl-worker
 systemctl status arl-worker-github
 systemctl status arl-scheduler
 ```
-### 一键删站
+### ARL修改
 
 ```
+# 一键删站
 docker stop arl && docker rm arl
+
+# 删除镜像
+docker rmi arl
+
+# 改poc，poc位置/opt/ARL-NPoC
+docker exec -it arl bash
+systemctl restart arl*
+
+# 改指纹，/opt/ARL/tools/指纹数据.json
+docker exec -it arl bash
+cd /opt/ARL && python3.6 tools/add_finger.py
 ```
 ### 特性
 
