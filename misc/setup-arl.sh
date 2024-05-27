@@ -128,7 +128,7 @@ systemctl restart mongod
 systemctl enable rabbitmq-server
 systemctl restart rabbitmq-server
 
-
+cd /opt
 if [ ! -d ARL ]; then
   echo "git clone ARL proj"
   git clone https://github.com/adysec/ARL
@@ -136,10 +136,10 @@ fi
 
 if [ ! -d "ARL-NPoC" ]; then
   echo "mv ARL-NPoC proj"
-  mv ARL/tools/ARL-NPoC ARL-NPoC
+ mv ARL/tools/ARL-NPoC ARL-NPoC
 fi
 
-cd ARL-NPoC
+cd /opt/ARL-NPoC
 echo "install poc requirements ..."
 pip3.6 install -r requirements.txt
 pip3.6 install -e .
@@ -168,7 +168,7 @@ if [ ! -f /data/GeoLite2/GeoLite2-City.mmdb ]; then
   wget -c https://github.com/adysec/ARL/raw/master/tools/GeoLite2-City.mmdb -O /data/GeoLite2/GeoLite2-City.mmdb
 fi
 
-cd ARL
+cd /opt/ARL
 
 if [ ! -f rabbitmq_user ]; then
   echo "add rabbitmq user"
