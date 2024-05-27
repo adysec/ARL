@@ -26,12 +26,12 @@ ARL删库后，备份项目使用到ARL-NPoC、arl_files等项目，无法跑通
 由于自动资产发现过程中会有大量的的发包，建议采用云服务器可以带来更好的体验。
 ### Docker 安装（快速）
 ```bash
-docker run --privileged -it -d -p 5003:5003 --name=arl adysec/arl /usr/sbin/init
+docker run --privileged -it -d -p 5003:5003 --name=arl --restart=always adysec/arl /usr/sbin/init
 ```
 ### Docker 内源码安装（最新版）
 
 ```bass
-docker run --privileged -it -d -p 5003:5003 --name=arl centos /usr/sbin/init
+docker run --privileged -it -d -p 5003:5003 --name=arl --restart=always centos /usr/sbin/init
 docker exec -it arl bash
 #docker内运行
 curl https://raw.githubusercontent.com/adysec/ARL/master/misc/setup-arl.sh >install.sh
