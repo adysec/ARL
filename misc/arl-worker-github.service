@@ -6,7 +6,7 @@ After=network.target
 User=root
 Group=root
 WorkingDirectory=/opt/ARL
-ExecStart=/usr/local/bin/celery -A app.celerytask.celery worker -l info -Q arlgithub -n arlgithub -c 2 -O fair -f arl_worker.log
+ExecStart=/usr/local/bin/celery -A app.celerytask.celery worker -l info -Q arlgithub -n arlgithub -c 3 -O fair -f arl_worker.log
 
 [Install]
 WantedBy=multi-user.target
