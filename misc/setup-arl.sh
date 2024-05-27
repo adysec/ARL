@@ -248,6 +248,8 @@ systemctl restart arl-scheduler
 systemctl enable nginx
 systemctl restart nginx
 
+chmod +x /opt/ARL/app/tools/*
+
 python3.6 tools/add_finger.py
 
 echo "install done"
