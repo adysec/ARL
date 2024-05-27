@@ -8,7 +8,7 @@ ARL资产侦察灯塔系统备份项目，**已跑通**
 ARL删库后，备份项目使用到ARL-NPoC、arl_files等项目，无法跑通，大多数人使用docker运行ARL，docker镜像同样被删除，无法拉取镜像，需要修改安装脚本调试环境
 ### 修改内容
 1. 用新不用旧，更新为centos8版本运行(docker内的centos7起不来systemctl)
-2. docker运行模式改为单docker镜像(对于大多数人只用一台服务器的场景下，前后端分离没有必要)
+2. docker运行模式改为单docker镜像，无需安装docker-compose(对于大多数人只用一台服务器的场景下，前后端分离没有必要)
 3. 修改centos软件源使用cloudflare代理(家里的电脑连官方源巨慢)
 4. 修改pip源使用cloudflare代理(国内服务器经常连不上pypi源)
 5. 加入指纹库(eHoleFinger等，使用ARL导出的格式，有新指纹可以提issue，或者直接改json文件)
@@ -75,6 +75,11 @@ systemctl status arl-web
 systemctl status arl-worker
 systemctl status arl-worker-github
 systemctl status arl-scheduler
+```
+### 一键删站
+
+```
+docker stop arl && docker rm arl
 ```
 ### 特性
 
