@@ -6,7 +6,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config(object):
-    CELERY_BROKER_URL = "amqp://arl:arlpassword@rabbitmq:5672/arlv2host"
+    CELERY_BROKER_URL = "amqp://arl:arlpassword@127.0.0.1:5672/arlv2host"
 
     MONGO_DB = 'ARLV2'
     MONGO_URL = 'mongodb://127.0.0.1:27017/'
