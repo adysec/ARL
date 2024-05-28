@@ -172,7 +172,7 @@ cd /opt/ARL
 
 if [ ! -f rabbitmq_user ]; then
   echo "add rabbitmq user"
-  rabbitmqctl add_user arl arlpassword
+  rabbitmqctl add_user arl ''
   rabbitmqctl add_vhost arlv2host
   rabbitmqctl set_user_tags arl arltag
   rabbitmqctl set_permissions -p arlv2host arl ".*" ".*" ".*"
