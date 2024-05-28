@@ -27,13 +27,19 @@ ARL删库后，备份项目使用到ARL-NPoC、arl_files等项目，无法跑通
 ### Docker 安装（快速）
 ```bash
 docker run --privileged -it -d -p 5003:5003 --name=arl --restart=always adysec/arl /usr/sbin/init
+docker exec -it arl bash
+# docker内运行
+rabbitmqctl add_user arl arlpassword
+rabbitmqctl add_vhost arlv2host
+rabbitmqctl set_user_tags arl arltag
+rabbitmqctl set_permissions -p arlv2host arl ".*" ".*" ".*"
 ```
 ### Docker 内源码安装（最新版）
 
 ```bass
 docker run --privileged -it -d -p 5003:5003 --name=arl --restart=always centos /usr/sbin/init
 docker exec -it arl bash
-#docker内运行
+# docker内运行
 curl https://raw.githubusercontent.com/adysec/ARL/master/misc/setup-arl.sh >install.sh
 bash install.sh
 exit
