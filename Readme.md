@@ -33,6 +33,7 @@ rabbitmqctl add_user arl arlpassword
 rabbitmqctl add_vhost arlv2host
 rabbitmqctl set_user_tags arl arltag
 rabbitmqctl set_permissions -p arlv2host arl ".*" ".*" ".*"
+cd /etc/systemd/system && systemctl restart arl*
 ```
 ### Docker 内源码安装（最新版）
 
