@@ -34,13 +34,14 @@ rabbitmqctl add_vhost arlv2host
 rabbitmqctl set_user_tags arl arltag
 rabbitmqctl set_permissions -p arlv2host arl ".*" ".*" ".*"
 cd /etc/systemd/system && systemctl restart arl*
+exit
 ```
 ### Docker 内源码安装（最新版）
 
 ```bass
 docker run --privileged -it -d -p 5003:5003 --name=arl --restart=always centos /usr/sbin/init
 docker exec -it arl bash
-# docker内运行
+# docker内运行，通过源码安装ARL
 curl https://raw.githubusercontent.com/adysec/ARL/master/misc/setup-arl.sh >install.sh
 bash install.sh
 exit
