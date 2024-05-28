@@ -1,6 +1,6 @@
 
 CELERY:
-  BROKER_URL : "amqp://arl:arlpassword@localhost:5672/arlv2host"
+  BROKER_URL : "amqp://arl:arlpassword@127.0.0.1:5672/arlv2host"
 
 
 MONGO:

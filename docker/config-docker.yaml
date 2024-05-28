@@ -1,9 +1,9 @@
 CELERY:
-  BROKER_URL : "amqp://arl:arlpassword@rabbitmq:5672/arlv2host"
+  BROKER_URL : "amqp://arl:arlpassword@127.0.0.1:5672/arlv2host"
 
 
 MONGO:
-  URI : 'mongodb://admin:admin@mongodb:27017/'
+  URI : 'mongodb://admin:admin@127.0.0.1:27017/'
   DB : 'arl'
 
 
