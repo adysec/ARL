@@ -23,6 +23,7 @@ ARL删库后，备份项目使用到ARL-NPoC、arl_files等项目，无法跑通
 10. 提高数据库连接超时时间(看别人二开是这么做的，实际上没感觉到区别，原版1c1g照冲不误)
 11. 删除域名及ip段限制(不会有人喜欢自己的工具受限制吧)
 12. 提高工具并发数(大部分都是云服务器跑的，并发性能足够，已测试)
+13. 使用cloudflare代理docker官方源(因为总所周知的原因，docker源目前国内用不了)
 
 ### 系统要求
 
@@ -30,7 +31,7 @@ ARL删库后，备份项目使用到ARL-NPoC、arl_files等项目，无法跑通
 由于自动资产发现过程中会有大量的的发包，建议采用云服务器可以带来更好的体验。
 ### Docker 安装（快速）
 ```bash
-docker run --privileged -it -d -p 5003:5003 --name=arl --restart=always adysec/arl /usr/sbin/init
+docker run --privileged -it -d -p 5003:5003 --name=arl --restart=always docker.adysec.com/adysec/arl /usr/sbin/init
 docker exec -it arl bash
 # docker内运行，上传docker镜像会隐去硬编码的数据库连接密码，因此需要重设密码
 rabbitmqctl add_user arl arlpassword
@@ -43,7 +44,7 @@ exit
 ### Docker 内源码安装（最新版）
 
 ```bass
-docker run --privileged -it -d -p 5003:5003 --name=arl --restart=always centos /usr/sbin/init
+docker run --privileged -it -d -p 5003:5003 --name=arl --restart=always docker.adysec.com/centos /usr/sbin/init
 docker exec -it arl bash
 # docker内运行，通过源码安装ARL
 curl https://raw.githubusercontent.com/adysec/ARL/master/misc/setup-arl.sh >install.sh
