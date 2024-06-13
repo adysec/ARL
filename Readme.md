@@ -44,7 +44,7 @@ exit
 ### Docker 内源码安装（最新版）
 
 ```bass
-docker run --privileged -it -d -p 5003:5003 --name=arl --restart=always docker.adysec.com/centos /usr/sbin/init
+docker run --privileged -it -d -p 5003:5003 --name=arl --restart=always docker.adysec.com/library/centos /usr/sbin/init
 docker exec -it arl bash
 # docker内运行，通过源码安装ARL
 curl https://raw.githubusercontent.com/adysec/ARL/master/misc/setup-arl.sh >install.sh
