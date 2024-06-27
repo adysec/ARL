@@ -34,6 +34,7 @@ ARL删库后，备份项目使用到ARL-NPoC、arl_files等项目，无法跑通
 docker run --privileged -it -d -p 5003:5003 --name=arl --restart=always docker.adysec.com/adysec/arl /usr/sbin/init
 docker exec -it arl bash
 # docker内运行，上传docker镜像会隐去硬编码的数据库连接密码，因此需要重设密码
+rabbitmqctl start_app
 rabbitmqctl add_user arl arlpassword
 rabbitmqctl add_vhost arlv2host
 rabbitmqctl set_user_tags arl arltag
