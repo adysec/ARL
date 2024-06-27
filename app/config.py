@@ -76,7 +76,6 @@ class Config(object):
     EMAIL_USERNAME = ""
     EMAIL_PASSWORD = ""
     EMAIL_TO = ""
-    FORBIDDEN_DOMAINS = []
 
     GITHUB_TOKEN = ""
     GITHUB_HASH_FILE = os.path.join(TMP_PATH, 'github.hash')
@@ -142,18 +141,6 @@ try:
             Config.DOMAIN_DICT_2W = domain_dict
         else:
             print("Warning {} is not file".format(domain_dict))
-
-    # *** 禁止域名配置 ***
-    forbidden_domains = y["ARL"].get("FORBIDDEN_DOMAINS")
-    if forbidden_domains is None:
-        pass
-    else:
-        Config.FORBIDDEN_DOMAINS = []
-        if not isinstance(forbidden_domains, list):
-            print("arl.forbidden_domains is not list")
-            sys.exit(-1)
-        elif forbidden_domains:
-            Config.FORBIDDEN_DOMAINS = forbidden_domains
 
     # *** 钉钉配置 ***
     if y.get("DINGDING"):
