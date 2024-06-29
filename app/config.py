@@ -84,7 +84,7 @@ class Config(object):
     DOMAIN_BRUTE_CONCURRENT = 300
     # 组合生成的域名爆破并发数
     ALT_DNS_CONCURRENT = 1500
-
+    FORBIDDEN_DOMAINS = []
     # 代理地址
     PROXY_URL = ""
 
