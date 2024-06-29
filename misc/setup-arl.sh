@@ -235,6 +235,8 @@ if [ ! -f /etc/systemd/system/arl-scheduler.service ]; then
   cp misc/arl-scheduler.service /etc/systemd/system/
 fi
 
+chmod +x /opt/ARL/app/tools/*
+
 echo "start arl services ..."
 
 systemctl enable arl-web
@@ -247,8 +249,6 @@ systemctl enable arl-scheduler
 systemctl restart arl-scheduler
 systemctl enable nginx
 systemctl restart nginx
-
-chmod +x /opt/ARL/app/tools/*
 
 python3.6 tools/add_finger.py
 
