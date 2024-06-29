@@ -79,7 +79,7 @@ docker exec -it arl bash
 tee /etc/resolv.conf <<"EOF"
 nameserver 本机ip
 nameserver 180.76.76.76
-nameserver 1.2.4.8
+nameserver 4.2.2.1
 nameserver 1.1.1.1
 EOF
 ```
