@@ -35,6 +35,7 @@ docker run --privileged -it -d -p 5003:5003 --name=arl --restart=always docker.a
 docker exec -it arl bash
 # docker内运行，上传docker镜像会隐去硬编码的数据库连接密码，因此需要重设密码
 rabbitmqctl start_app
+# 建议执行后隔一会再运行下面的命令，否则可能报错
 rabbitmqctl add_user arl arlpassword
 rabbitmqctl add_vhost arlv2host
 rabbitmqctl set_user_tags arl arltag
@@ -42,7 +43,7 @@ rabbitmqctl set_permissions -p arlv2host arl ".*" ".*" ".*"
 cd /etc/systemd/system && systemctl restart arl*
 exit
 ```
-### Docker 内源码安装（最新版）
+### Docker 内源码安装（最新版，需要为境外网络环境，且网络稳定）
 
 ```bass
 docker run --privileged -it -d -p 5003:5003 --name=arl --restart=always docker.adysec.com/library/centos /usr/sbin/init
