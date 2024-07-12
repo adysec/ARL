@@ -1,24 +1,13 @@
 import requests
+import yaml
 import re
 requests.packages.urllib3.disable_warnings()
 
 def update_data(token):
-	with open('tools/指纹数据.json', 'r',encoding='utf-8') as file:
-		rules_dict = {}
-		current_name = None
-		current_rule = None
-		for line in file:
-			if line.startswith("- name:"):
-				if current_name is not None and current_rule is not None:
-					rules_dict[current_name.strip()] = current_rule.strip()
-				current_name = line.replace("- name:", "").strip()
-				current_rule = None
-			elif line.startswith("  rule:"):
-				current_rule = line.replace("  rule:", "").strip()
-		if current_name is not None and current_rule is not None:
-			rules_dict[current_name.strip()] = current_rule.strip()
-
-	for name, rule in rules_dict.items():
+	push_config = yaml.safe_load(open("config/finger_arl.yaml", "r", encoding="utf-8").read())
+	for i in range(len(push_config['finger_arl'])):
+		name = push_config['finger_arl'][i]['name']
+		rule = push_config['finger_arl'][i]['rule']
 		payload = {
 			"name": name,
 			"human_rule": rule
