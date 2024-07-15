@@ -4,7 +4,7 @@ import re
 requests.packages.urllib3.disable_warnings()
 
 def update_data(token):
-	push_config = yaml.safe_load(open("config/finger_arl.yaml", "r", encoding="utf-8").read())
+	push_config = yaml.safe_load(open("config/指纹数据.yaml", "r", encoding="utf-8").read())
 	for i in range(len(push_config['finger_arl'])):
 		name = push_config['finger_arl'][i]['name']
 		rule = push_config['finger_arl'][i]['rule']
