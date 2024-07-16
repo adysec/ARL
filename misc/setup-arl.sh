@@ -252,5 +252,6 @@ systemctl enable nginx
 systemctl restart nginx
 
 python3.6 tools/add_finger.py
+python3.6 tools/add_finger_ehole.py
 
 echo "install done"
