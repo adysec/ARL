@@ -40,7 +40,7 @@ def get_rule(token):
 		data = json.load(file)
 		for i in data['fingerprint']:
 			for keyword in i['keyword']:
-				if i['method']=='faviconhash':
+				if i['method']=='faviconhash'or i['method']=='icon_hash':
 					name = i['cms']
 					rule = 'icon_hash="'+keyword+'"'
 				elif i['method']=='keyword':
