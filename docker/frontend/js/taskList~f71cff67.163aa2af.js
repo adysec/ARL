@@ -133,7 +133,7 @@
                         name: "",
                         target: "",
                         domain_brute_type: "big",
-                        port_scan_type: "top100",
+                        port_scan_type: "all",
                         subfinder_type: "big",
                         checkGroup: ["domain_brute", "alt_dns", "dns_query_plugin" , "arl_search", "port_scan", "service_detection", "os_detection", "ssl_cert", "dns_query_plugin", "skip_scan_cdn_ip" , "site_identify", "search_engines",  "site_spider",  "site_capture", "file_leak", "findvhost", "nuclei_scan",  "web_info_hunter" ]
                      },
