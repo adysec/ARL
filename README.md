@@ -1,3 +1,4 @@
+[🇨🇳 简体中文](README.md) | [🇺🇸 English](README.en.md)
 ## ARL(Asset Reconnaissance Lighthouse)资产侦察灯塔系统
 <a href="https://github.com/adysec/ARL/stargazers"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/adysec/ARL?color=yellow&logo=riseup&logoColor=yellow&style=flat-square"></a>
 <a href="https://github.com/adysec/ARL/network/members"><img alt="GitHub forks" src="https://img.shields.io/github/forks/adysec/ARL?color=orange&style=flat-square"></a>
