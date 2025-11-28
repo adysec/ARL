@@ -45,7 +45,7 @@ exit
 ```
 如遇mongod服务问题导致`timeout of 12000ms exceeded`，请尝试在docker启动中加入路径`-v /sys/fs/cgroup:/sys/fs/cgroup`
 
-**如遇到国内网络问题导致镜像无法拉取，建议自行搭建官方docker源代理**
+**由于docker hub新增流控策略，如遇到国内网络问题导致镜像无法拉取，建议自行搭建官方docker源代理**
 ```
 搭建方式参考https://github.com/adysec/mirror
 使用方式参考https://mirror.adysec.com/container/docker-hub/
