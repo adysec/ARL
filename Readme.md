@@ -80,7 +80,7 @@ chmod +x setup-arl.sh
 本机安装smartdns，以ubuntu为例
 ```
 apt install smartdns -y
-curl https://github.com/adysec/ARL/raw/master/tools/smartdns.conf > /etc/smartdns/smartdns.conf
+curl https://raw.githubusercontent.com/adysec/ARL/refs/heads/master/tools/smartdns.conf > /etc/smartdns/smartdns.conf
 systemctl restart smartdns
 docker exec -it arl bash
 #docker内运行
