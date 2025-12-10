@@ -1,9 +1,6 @@
 name: Daily Update ARL Tools
 
 on:
-  push:
-    branches:
-      - master
   schedule:
     - cron: '0 12 * * *'
 
