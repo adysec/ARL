@@ -782,7 +782,7 @@ class PortScannerAsync(object):
         """
         try:
             return self._process.is_alive()
-        except:
+        except Exception:
             return False
 
 
